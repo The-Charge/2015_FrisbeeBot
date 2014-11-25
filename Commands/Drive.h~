@@ -9,8 +9,8 @@
 // it from being updated in th future.
 
 
-#ifndef SHIFT_HIGH_H
-#define SHIFT_HIGH_H
+#ifndef DRIVE_H
+#define DRIVE_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,9 +21,9 @@
  *
  * @author ExampleAuthor
  */
-class ShiftHigh: public Command {
+class Drive: public Command {
 public:
-	ShiftHigh();
+	Drive();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

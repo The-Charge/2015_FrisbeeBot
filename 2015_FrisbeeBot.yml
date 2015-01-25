@@ -1,18 +1,10 @@
 Version 1.0
 
 ---
-Name: 2015_FrisbeeBot
-Base: Robot
 Children:
-- Name: Subsystems
-  Base: Subsystems
-  Children:
-  - Name: Drivetrain
-    Base: Subsystem
-    Children:
-    - Name: leftfront
-      Base: CAN Jaguar
-      Children: []
+- Children:
+  - Children:
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: &id001 ['2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
@@ -21,9 +13,9 @@ Children:
           name: CAN ID
           validators: &id002 [CANID]
           value: '6'
-    - Name: leftrear
       Base: CAN Jaguar
-      Children: []
+      Name: leftfront
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -31,9 +23,9 @@ Children:
           name: CAN ID
           validators: *id002
           value: '18'
-    - Name: rightfront
       Base: CAN Jaguar
-      Children: []
+      Name: leftrear
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -41,9 +33,9 @@ Children:
           name: CAN ID
           validators: *id002
           value: '11'
-    - Name: rightrear
       Base: CAN Jaguar
-      Children: []
+      Name: rightfront
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -51,15 +43,15 @@ Children:
           name: CAN ID
           validators: *id002
           value: '5'
+      Base: CAN Jaguar
+      Name: rightrear
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
-  - Name: Elevator
     Base: Subsystem
-    Children:
-    - Name: Left
-      Base: CAN Jaguar
-      Children: []
+    Name: Drivetrain
+  - Children:
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -67,9 +59,9 @@ Children:
           name: CAN ID
           validators: *id002
           value: '8'
-    - Name: Right
       Base: CAN Jaguar
-      Children: []
+      Name: Left
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -77,9 +69,9 @@ Children:
           name: CAN ID
           validators: *id002
           value: '4'
-    - Name: Pot
-      Base: Potentiometer
-      Children: []
+      Base: CAN Jaguar
+      Name: Right
+    - Children: []
       Properties:
         Input Module (Analog): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['1', '2']
@@ -93,15 +85,15 @@ Children:
           name: Input Channel (Analog)
           validators: [AnalogInput]
           value: '1'
+      Base: Potentiometer
+      Name: Pot
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
-  - Name: Shooter
     Base: Subsystem
-    Children:
-    - Name: Front
-      Base: CAN Jaguar
-      Children: []
+    Name: Elevator
+  - Children:
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -109,9 +101,9 @@ Children:
           name: CAN ID
           validators: *id002
           value: '3'
-    - Name: Rear
       Base: CAN Jaguar
-      Children: []
+      Name: Front
+    - Children: []
       Properties:
         CAN ID: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
@@ -119,15 +111,15 @@ Children:
           name: CAN ID
           validators: *id002
           value: '7'
+      Base: CAN Jaguar
+      Name: Rear
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
-  - Name: Shifter
     Base: Subsystem
-    Children:
-    - Name: Left
-      Base: Servo
-      Children: []
+    Name: Shooter
+  - Children:
+    - Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id003 ['1', '2']
@@ -141,9 +133,9 @@ Children:
           name: Output Channel (PWM)
           validators: &id006 [PWMOutput]
           value: '1'
-    - Name: Right
       Base: Servo
-      Children: []
+      Name: Left
+    - Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id003
@@ -157,15 +149,15 @@ Children:
           name: Output Channel (PWM)
           validators: *id006
           value: '2'
+      Base: Servo
+      Name: Right
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
-  - Name: Flopper
     Base: Subsystem
-    Children:
-    - Name: FlopperSpike
-      Base: Spike
-      Children: []
+    Name: Shifter
+  - Children:
+    - Children: []
       Properties:
         Output Module (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['1', '2']
@@ -179,9 +171,9 @@ Children:
           name: Output Channel (Relay)
           validators: [RelayOutput]
           value: '1'
-    - Name: IRSensor
-      Base: Digital Input
-      Children: []
+      Base: Spike
+      Name: FlopperSpike
+    - Children: []
       Properties:
         Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12',
@@ -196,16 +188,18 @@ Children:
           name: Input Module (Digital)
           validators: [DigitalChannel]
           value: '1'
+      Base: Digital Input
+      Name: IRSensor
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: Flopper
   Properties: {}
-- Name: Operator Interface
-  Base: OI
-  Children:
-  - Name: Left Joystick
-    Base: Joystick
-    Children: []
+  Base: Subsystems
+  Name: Subsystems
+- Children:
+  - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: &id007 ['1', '2', '3', '4']
@@ -213,9 +207,9 @@ Children:
         name: Number
         validators: &id008 [Joystick]
         value: '1'
-  - Name: Right Joystick
     Base: Joystick
-    Children: []
+    Name: Left Joystick
+  - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
         choices: *id007
@@ -223,28 +217,32 @@ Children:
         name: Number
         validators: *id008
         value: '2'
+    Base: Joystick
+    Name: Right Joystick
   Properties: {}
-- Name: Commands
-  Base: Commands
-  Children:
-  - Name: Autonomous Command
-    Base: Command
-    Children: []
+  Base: OI
+  Name: Operator Interface
+- Children:
+  - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: Autonomous Command
   Properties: {}
+  Base: Commands
+  Name: Commands
 Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
   Wiring File: !!robotbuilder.data.properties.FileProperty {default: '', extension: html,
-    folder: false, name: Wiring File, validators: null, value: 'C:\Users\Robotics\Desktop\wiring
+    folder: false, name: Wiring File, validators: null, value: 'C:\workspace\2015_FrisbeeBot\wiring
       table.html'}
   C++ Windriver Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Windriver\workspace',
     extension: null, folder: true, name: C++ Windriver Workspace, validators: null,
-    value: 'C:\Windriver\workspace'}
+    value: 'C:\workspace'}
   Use Default Java Package: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Use Default Java Package, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
@@ -255,6 +253,8 @@ Properties:
     validators: null, value: 2619}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
-  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Robotics\NetBeansProjects',
+  Java Project Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Mike\NetBeansProjects',
     extension: null, folder: true, name: Java Project Directory, validators: null,
-    value: 'C:\Users\Robotics\NetBeansProjects'}
+    value: 'C:\workspace\2015_FrisbeeBot'}
+Base: Robot
+Name: 2015_FrisbeeBot

@@ -21,7 +21,11 @@ void Drive::Initialize() {
 }
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute() {
+	float leftSpeed = Robot::oi->getLeftJoystick()-> GetY();
+	float rightSpeed = Robot::oi->getRightJoystick()-> GetY();
 	
+	Robot::driveTrain->SetLeft(leftSpeed);
+	Robot::driveTrain->SetRight(rightSpeed);
 }
 // Make this return true when this Command no longer needs to run execute()
 bool Drive::IsFinished() {
@@ -29,9 +33,10 @@ bool Drive::IsFinished() {
 }
 // Called once after isFinished returns true
 void Drive::End() {
-	
+	Robot::driveTrain->Set(0);
 }
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Drive::Interrupted() {
+	End();
 }

@@ -1,0 +1,4 @@
+cd /
+cd ni-rt
+cd system
+put 2015_FrisbeeBot/Debug/2015_FrisbeeBot.out FRC_UserProgram.out

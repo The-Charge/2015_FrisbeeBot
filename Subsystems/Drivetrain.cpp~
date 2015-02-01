@@ -26,3 +26,31 @@ void Drivetrain::InitDefaultCommand() {
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+
+void DriveTrain::Set(float speed)
+{
+	SetLeft(speed);
+	SetRight(speed);
+}
+
+void DriveTrain::SetLeft(float speed)
+{
+	//need delinearize eventually
+	speed = speed < -1 ? -1 : speed;
+	speed = speed > 1 ? 1 : speed;
+	//will need to be inverted - one side of the robot will want to go the wrong way
+	
+	leftfront -> Set(speed);
+	leftrear -> Set(speed);
+}
+
+void DriveTrain::SetRight(float speed)
+{
+		//need delinearize eventually
+	speed = speed < -1 ? -1 : speed;
+	speed = speed > 1 ? 1 : speed;
+	//will need to be inverted - one side of the robot will want to go the wrong way
+	
+	rightfront -> Set(speed);
+	rightrear -> Set(speed);
+}
